@@ -1,4 +1,5 @@
 \documentclass[11pt]{amsart}
+\usepackage{xstring}
 
 \title{Brief Article}
 \author{The Author}
@@ -7,11 +8,20 @@
 \newread\file
 \openin\file=.git/HEAD
 \read\file to\fileline
+\StrBehind{\fileline}{ref: }[\refpath]
 \closein\file
+
+\openin\file=.git/\refpath
+\read\file to\fileline
+\closein\file
+
+
 \begin{document}
 
 
 \fileline
+
+\refpath
 %\section{}
 %\subsection{}
 

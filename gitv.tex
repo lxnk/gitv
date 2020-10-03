@@ -18,13 +18,54 @@
 
 \begin{document}
 
+\newcount\nfix
+\newcount\nsub
+\newcount\nver
+\nfix = 0
+\nsub = 0
+\nver = 0
+\def\filename{.git/refs/tags/v\the\nver.\the\nsub.\the\nfix}
+
+
+
+\loop
+\IfFileExists{\filename}{
+\openin\file=\filename
+\read\file to\taghash
+\closein\file
+}{}
+\ifnum\nfix < 2
+\advance\nfix by 1
+\repeat
 
 \fileline
+%
+%2)\refpath
+%
+%3)\filename
+%
+%\fn
+%
+%4)%\taghash
 
-\refpath
+
+%\tag
+\taghash
 %\section{}
 %\subsection{}
 
+
+%\newcount\mycounter
+%\mycounter = 1
+%\def\bar{\expandafter hello\the\mycounter}
+%\let\fooi\bar
+%\def\fooii{\bar}
+%\loop
+%\fooi +\fooii
+%
+%\ifnum\mycounter < 2
+%\advance\mycounter by 1
+%\repeat
 
 
 \end{document}  
